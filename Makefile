@@ -8,9 +8,18 @@
 #
 # Underlying data is available from 1990 Q1, inclusive.
 
-# 1. Data pipeline executes download.py and preprocessing.py
-data: src/data_pipeline.py clean
-	python src/data_pipeline.py --year=$(year) --quarter=$(quarter)
+VENV = venv
+PYTHON = $(VENV)/bin/python3
+PIP = $(VENV)/bin/pip
+
+$(VENV)/bin/activate: requirements.txt
+	python3 -m venv $(VENV)
+	python3 -m pip install --upgrade pip
+	$(PIP) install -r requirements.txt
+
+# 1. data pipeline executes $(VENV)/bin/activate download.py preprocessing.py
+data: $(VENV)/bin/activate 
+	$(PYTHON) src/data_pipeline.py --year=$(year) --quarter=$(quarter)
 
 # 2. model pipeline executes filter_aggregate.py and modeling.py
 model: src/model_pipeline.py
@@ -25,5 +34,7 @@ clean_output:
 	rm -rf data/output
 clean_temp:
 	rm -rf *.tmp
+	rm -rf __pycache__
+	rm -rf $(VENV)
 clean_data:
 	rm -rf data
