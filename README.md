@@ -44,7 +44,9 @@ The minimal structure of this repository promotes independent exploratory invest
 
 The following two-step process allows using this workflow iteratively. **Step 1** is to be repeated only if a new date period is to be investigated, while **Step 2** can be repeated by varying its parameters for exploratory purposes. 
 
-- **Step 1** creates a virtual environment based on `requirements.txt`, then downloads and pre-processes DB1B data for the quarter and year specified by the user. Simply execute the following command from the root directory:
+### Step 1
+
+The first step, performed by executing the below command from the root directory, creates a virtual environment from `requirements.txt`, then downloads and pre-processes DB1B data for the quarter and year specified by the user:
 
 ```
 make data year=<year> quarter=<quarter>
@@ -55,7 +57,9 @@ make data year=<year> quarter=<quarter>
 | year         | Mandatory          | int: 4-digit format (e.g., `2019`) |
 | quarter      | Mandatory          | int: 1-digit format (e.g., `3`) |
 
-- **Step 2** aggregates and filters the preprocessed data based on any investigation needs identified by the user (n.b., all arguments are optional):
+### Step 2
+
+The second step, performed by executing the below command, aggregates and filters the preprocessed data based on any investigation needs identified by the user (n.b., all arguments are optional):
 
 ```
 make model [options]
@@ -71,9 +75,13 @@ make model [options]
 | distance_min | Optional           | int: integer numeric, no punctation (e.g., `800`) |
 | n_clusters   | Optional           | int: integer numeric, no punctation (e.g., `5`) |
 
-For help for either command, such as the format of its parameters, execute:
+
+### Step 3 (optional)
+
+To clear all data files and folders to reset the repository to its initial state:
+
 ```
-make <command> --help
+make clean
 ```
 
 #### Example
@@ -100,3 +108,7 @@ Contributions are welcome. Please either fork this repo for own development need
 ```
 git clone https://github.com/vt794/bots_od_clustering
 ```
+
+## License
+
+This repository uses an MIT License, accessible [here](https://github.com/vt794/us_airline_network_clustering_kmeans/blob/main/LICENSE).
