@@ -86,15 +86,11 @@ class Clustering():
 
         id_feat = "OD_ndir"
 
-        # try:
         results, summary = self.kmeans(X=X.values, data=self.ndir_ods, n_clusters=n_clusters,
                                        id_feat=id_feat, verbose=verbose)
 
         # return args for unit tests
         return results, summary
-
-        # except:
-        #    print("No systematic n_cluster Elbow value detected...\nSolutions: (1) adjust filtering, (2) tune preprocessing, or (3) specify n_cluster value manually.")
 
     def kmeans(self, X: pd.DataFrame, data: pd.DataFrame, id_feat,
                n_clusters=3, seed=2022, verbose=True):
